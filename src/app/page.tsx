@@ -196,26 +196,78 @@ const ProductCard = ({ product }: { product: typeof PRODUCTS[0] }) => {
 
 export default function GameStoreLanding() {
   const [activeCategory, setActiveCategory] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  const filteredProducts = activeCategory === "all" 
-    ? PRODUCTS 
-    : PRODUCTS.filter(p => p.category === activeCategory);
+  const filteredProducts = PRODUCTS.filter(p => {
+    const matchesCategory = activeCategory === "all" || p.category === activeCategory;
+    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                         p.description.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col pb-24">
+    <div className="min-h-screen bg-background text-white flex flex-col pb-24">
       {/* --- TOP BAR --- */}
       <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-xl border-b border-white/5">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+        <div className="container mx-auto px-4 h-16 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2 shrink-0">
             <div className="size-8 bg-primary rounded-lg flex items-center justify-center shadow-accent-glow">
               <Gamepad2 className="text-white" size={20} />
             </div>
-            <span className="text-xl font-black tracking-tighter italic">GAMESTORE</span>
+            <span className="text-xl font-black tracking-tighter italic text-white">GAMESTORE</span>
           </div>
-          <div className="flex items-center gap-3">
-            <Button variant="ghost" size="icon" className="rounded-full text-white/70">
-              <Search size={20} />
-            </Button>
+
+          <div className="flex-1 max-w-md hidden md:flex relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40" size={18} />
+            <input 
+              type="text"
+              placeholder="Rechercher une console, manette..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-white/5 border border-white/10 rounded-full py-2 pl-10 pr-4 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-primary/50 transition-all"
+            />
+          </div>
+
+          <div className="flex items-center gap-2">
+            <div className="md:hidden">
+              <AnimatePresence>
+                {isSearchOpen && (
+                  <motion.div 
+                    initial={{ width: 0, opacity: 0 }}
+                    animate={{ width: 200, opacity: 1 }}
+                    exit={{ width: 0, opacity: 0 }}
+                    className="relative"
+                  >
+                    <input 
+                      type="text"
+                      autoFocus
+                      placeholder="Rechercher..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full bg-white/5 border border-white/10 rounded-full py-2 pl-4 pr-10 text-sm text-white focus:outline-none focus:border-primary/50"
+                    />
+                    <button 
+                      onClick={() => { setIsSearchOpen(false); setSearchQuery(""); }}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40"
+                    >
+                      ×
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              {!isSearchOpen && (
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="rounded-full text-white"
+                  onClick={() => setIsSearchOpen(true)}
+                >
+                  <Search size={20} />
+                </Button>
+              )}
+            </div>
+
             <Button 
               render={
                 <a 
@@ -225,7 +277,7 @@ export default function GameStoreLanding() {
                 />
               }
               variant="ghost" 
-              className="rounded-full text-white/70 flex items-center gap-2 hover:bg-primary/10 hover:text-primary transition-all px-4 h-10 w-auto"
+              className="rounded-full text-white flex items-center gap-2 hover:bg-primary/10 hover:text-primary transition-all px-4 h-10 w-auto"
             >
               <MessageSquare size={20} />
               <span className="text-xs font-bold hidden sm:inline">Une question ?</span>
@@ -334,7 +386,10 @@ export default function GameStoreLanding() {
             <p className="text-white/70 text-sm max-w-sm">
               Explorez notre large gamme de manettes professionnelles conçues pour la précision et la durabilité.
             </p>
-            <Button as="a" href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="w-fit rounded-full bg-white text-background hover:bg-white/90 font-extrabold px-8 py-3 flex items-center justify-center">
+            <Button 
+              render={<a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" />} 
+              className="w-fit rounded-full bg-white text-background hover:bg-white/90 font-extrabold px-8 py-3 flex items-center justify-center"
+            >
               Nous contacter
             </Button>
           </div>
@@ -402,8 +457,5 @@ export default function GameStoreLanding() {
         </motion.div>
       </div>
     </div>
-  );
-}
-iv>
   );
 }
