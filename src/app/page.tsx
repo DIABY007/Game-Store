@@ -20,7 +20,7 @@ import { Badge } from "@/components/ui/badge";
 
 // --- CONSTANTS ---
 
-const WHATSAPP_NUMBER = "22656626039";
+const WHATSAPP_NUMBER = "22656636039";
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
 const CALL_LINK = `tel:+${WHATSAPP_NUMBER}`;
 
@@ -158,7 +158,7 @@ const ProductCard = ({ product }: { product: typeof PRODUCTS[0] }) => {
             src={product.image}
             alt={product.name}
             fill
-            className="object-contain p-4 group-hover:scale-110 transition-transform duration-500 drop-shadow-product-image"
+            className={`object-contain ${product.id === 'ps5' ? 'p-1 scale-110' : 'p-4'} group-hover:scale-110 transition-transform duration-500 drop-shadow-product-image`}
           />
         </div>
         <CardContent className="p-4 flex flex-col flex-1 gap-3">
@@ -170,7 +170,7 @@ const ProductCard = ({ product }: { product: typeof PRODUCTS[0] }) => {
           
           <div className="mt-auto flex items-end justify-between">
             <div className="flex flex-col">
-              <span className="text-xs text-muted-foreground uppercase tracking-widest">Prix</span>
+              <span className="text-xs text-white/50 uppercase tracking-widest">Prix</span>
               <div className="flex items-start">
                 <span className="text-2xl font-extrabold text-white leading-none">
                   ${Math.floor(product.price)}
@@ -247,7 +247,7 @@ export default function GameStoreLanding() {
               PERFORMANCE <br />
               <span className="text-primary">ULTIME</span>
             </h1>
-            <p className="text-sm md:text-base text-secondary max-w-md">
+            <p className="text-sm md:text-base text-white/70 max-w-md">
               Améliorez votre setup avec les dernières consoles et accessoires. L'expérience immersive commence ici.
             </p>
             <div className="flex items-center gap-4 mt-2">
@@ -261,13 +261,13 @@ export default function GameStoreLanding() {
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="relative w-full h-full"
+              className="relative w-full h-full scale-150 origin-bottom-right"
             >
               <Image 
                 src="/Image/PS5.png" 
                 alt="PS5" 
                 fill 
-                className="object-contain p-12 drop-shadow-[0_20px_50px_rgba(0,0,0,1)]"
+                className="object-contain p-2 drop-shadow-[0_20px_50px_rgba(0,0,0,1)]"
               />
             </motion.div>
           </div>
@@ -286,7 +286,7 @@ export default function GameStoreLanding() {
                 onClick={() => setActiveCategory(cat.id)}
                 variant={activeCategory === cat.id ? "default" : "secondary"}
                 className={`rounded-full px-6 flex items-center gap-2 h-11 transition-all duration-300 border border-white/5 ${
-                  activeCategory === cat.id ? "bg-primary text-white shadow-accent-glow" : "bg-[#161616] text-secondary hover:bg-white/10"
+                  activeCategory === cat.id ? "bg-primary text-white shadow-accent-glow" : "bg-[#161616] text-white/70 hover:bg-white/10"
                 }`}
               >
                 <cat.icon size={16} />
@@ -298,13 +298,32 @@ export default function GameStoreLanding() {
 
         {/* --- PRODUCT GRID --- */}
         <section className="flex flex-col gap-6">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-            <AnimatePresence mode="popLayout">
-              {filteredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </AnimatePresence>
-          </div>
+          {filteredProducts.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+              <AnimatePresence mode="popLayout">
+                {filteredProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </AnimatePresence>
+            </div>
+          ) : (
+            <div className="py-20 flex flex-col items-center justify-center text-center gap-4">
+              <div className="size-16 bg-white/5 rounded-full flex items-center justify-center">
+                <Search size={32} className="text-white/20" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-white">Aucun résultat</h3>
+                <p className="text-white/50">Essayez d'autres mots-clés ou changez de catégorie.</p>
+              </div>
+              <Button 
+                variant="outline" 
+                onClick={() => {setSearchQuery(""); setActiveCategory("all");}}
+                className="border-white/10 text-white hover:bg-white/5"
+              >
+                Réinitialiser les filtres
+              </Button>
+            </div>
+          )}
         </section>
 
         {/* --- FEATURED BANNER --- */}
@@ -312,10 +331,10 @@ export default function GameStoreLanding() {
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_0%_0%,rgba(123,47,255,0.1),transparent_50%)]" />
           <div className="flex-1 flex flex-col gap-4 z-10">
             <h2 className="text-3xl font-black text-white leading-tight">PRENEZ LE CONTRÔLE <br />DE VOTRE JEU</h2>
-            <p className="text-secondary text-sm max-w-sm">
+            <p className="text-white/70 text-sm max-w-sm">
               Explorez notre large gamme de manettes professionnelles conçues pour la précision et la durabilité.
             </p>
-            <Button render={<a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" />} className="w-fit rounded-full bg-white text-black hover:bg-white/90 font-bold px-8 py-3 flex items-center justify-center">
+            <Button as="a" href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="w-fit rounded-full bg-white text-background hover:bg-white/90 font-extrabold px-8 py-3 flex items-center justify-center">
               Nous contacter
             </Button>
           </div>
@@ -342,16 +361,16 @@ export default function GameStoreLanding() {
               </div>
               <span className="text-xl font-black tracking-tighter italic">GAMESTORE</span>
             </div>
-            <p className="text-muted-foreground text-sm max-w-xs">
+            <p className="text-white/50 text-sm max-w-xs">
               La destination ultime pour le matériel gaming depuis 2026.
             </p>
           </div>
-          <div className="flex gap-8 text-sm text-secondary font-bold uppercase tracking-widest">
+          <div className="flex gap-8 text-sm text-white/70 font-bold uppercase tracking-widest">
             <a href={WHATSAPP_LINK} className="hover:text-primary transition-colors">WhatsApp</a>
             <a href={CALL_LINK} className="hover:text-primary transition-colors">Appel</a>
             <a href="#" className="hover:text-primary transition-colors">Localisation</a>
           </div>
-          <div className="pt-6 border-t border-white/5 w-full flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest text-muted-foreground">
+          <div className="pt-6 border-t border-white/5 w-full flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest text-white/50">
             <span>&copy; 2026 GAMESTORE BURKINA FASO. TOUS DROITS RÉSERVÉS.</span>
             <div className="flex gap-4">
               <span>INSTAGRAM</span>
@@ -383,5 +402,8 @@ export default function GameStoreLanding() {
         </motion.div>
       </div>
     </div>
+  );
+}
+iv>
   );
 }
