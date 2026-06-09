@@ -209,8 +209,8 @@ export default function GameStoreLanding() {
   return (
     <div className="min-h-screen bg-background text-white flex flex-col pb-24">
       {/* --- TOP BAR --- */}
-      <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-xl border-b border-white/5">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between gap-4">
+      <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-xl border-b border-white/5 pt-safe sm:pt-0">
+        <div className="container mx-auto px-4 h-16 sm:h-20 flex items-center justify-between gap-4">
           <div className="flex items-center gap-2 shrink-0">
             <div className="size-8 bg-primary rounded-lg flex items-center justify-center shadow-accent-glow">
               <Gamepad2 className="text-white" size={20} />
@@ -289,9 +289,9 @@ export default function GameStoreLanding() {
       <main className="flex-1 container mx-auto px-4 pt-6 flex flex-col gap-10">
         
         {/* --- HERO SECTION --- */}
-        <section className="relative rounded-3xl overflow-hidden aspect-[16/9] md:aspect-[21/9] bg-gradient-to-br from-[#1a1a1a] to-background border border-white/5">
+        <section className="relative rounded-3xl overflow-hidden min-h-fit h-auto md:aspect-[21/9] bg-gradient-to-br from-[#1a1a1a] to-background border border-white/5 pb-10 md:pb-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(123,47,255,0.15),transparent_70%)]" />
-          <div className="relative h-full flex flex-col justify-center px-8 md:px-16 gap-4 max-w-2xl">
+          <div className="relative h-full flex flex-col justify-center px-8 md:px-16 pt-10 md:pt-0 gap-4 max-w-2xl">
             <Badge variant="outline" className="w-fit border-primary/50 text-primary bg-primary/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-bold">
               Nouvel Arrivage
             </Badge>
