@@ -1,0 +1,344 @@
+{
+  "meta": {
+    "name": "Dark Commerce — Gaming/Tech Marketplace Design System",
+    "version": "1.0.0",
+    "description": "A high-contrast dark mode e-commerce UI system built around deep blacks, electric purples, and bold product photography. Designed for tech/gaming products. The aesthetic is confident, premium, and immersive — not playful. Every surface exists to make the product the hero.",
+    "directorsNote": "Think PS5 UI meets Darkstore. The purple is never decorative — it always signals interactivity or value. The dark surfaces recede so products advance. Do not brighten the backgrounds. Do not add gradients where there are none. Restraint in surface, aggression in accent."
+  },
+
+  "colorTokens": {
+    "background": {
+      "primary": "#0D0D0D",
+      "secondary": "#1A1A1A",
+      "card": "#161616",
+      "elevated": "#222222",
+      "overlay": "rgba(0, 0, 0, 0.6)"
+    },
+    "accent": {
+      "purple": "#7B2FFF",
+      "purpleLight": "#9B5CFF",
+      "purpleDark": "#5B1FCC",
+      "purpleSubtle": "rgba(123, 47, 255, 0.15)"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#AAAAAA",
+      "muted": "#666666",
+      "onAccent": "#FFFFFF"
+    },
+    "status": {
+      "star": "#FFB800",
+      "success": "#3DDC84",
+      "danger": "#FF4D4D"
+    },
+    "border": {
+      "subtle": "rgba(255,255,255,0.06)",
+      "default": "rgba(255,255,255,0.10)",
+      "accent": "rgba(123, 47, 255, 0.4)"
+    }
+  },
+
+  "typography": {
+    "fontFamilies": {
+      "display": "'Inter', 'SF Pro Display', sans-serif",
+      "body": "'Inter', 'SF Pro Text', sans-serif",
+      "mono": "'JetBrains Mono', 'Fira Code', monospace"
+    },
+    "scale": {
+      "xs":   { "size": "11px", "weight": 400, "lineHeight": "16px", "tracking": "0.02em" },
+      "sm":   { "size": "13px", "weight": 400, "lineHeight": "18px", "tracking": "0" },
+      "base": { "size": "15px", "weight": 400, "lineHeight": "22px", "tracking": "0" },
+      "md":   { "size": "17px", "weight": 500, "lineHeight": "24px", "tracking": "-0.01em" },
+      "lg":   { "size": "20px", "weight": 600, "lineHeight": "28px", "tracking": "-0.02em" },
+      "xl":   { "size": "26px", "weight": 700, "lineHeight": "32px", "tracking": "-0.03em" },
+      "2xl":  { "size": "34px", "weight": 800, "lineHeight": "40px", "tracking": "-0.04em" }
+    },
+    "rules": [
+      "Product names use md or lg, weight 600–700",
+      "Prices use xl or 2xl, weight 800, white",
+      "Cent values use base size, weight 400, offset top — never same size as the dollar amount",
+      "Labels and categories use xs or sm, uppercase, tracking 0.08em, muted color",
+      "Body descriptions use sm, secondary color, max 3 lines before truncation"
+    ]
+  },
+
+  "spacing": {
+    "unit": 4,
+    "scale": {
+      "1": "4px",
+      "2": "8px",
+      "3": "12px",
+      "4": "16px",
+      "5": "20px",
+      "6": "24px",
+      "8": "32px",
+      "10": "40px",
+      "12": "48px",
+      "16": "64px"
+    },
+    "screenPadding": "16px",
+    "cardPadding": "16px",
+    "componentGap": "12px",
+    "sectionGap": "24px"
+  },
+
+  "borderRadius": {
+    "sm": "8px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "20px",
+    "full": "999px",
+    "card": "16px",
+    "button": "999px",
+    "input": "12px",
+    "badge": "999px",
+    "thumbnail": "10px"
+  },
+
+  "shadows": {
+    "card": "0 4px 24px rgba(0,0,0,0.5)",
+    "elevated": "0 8px 40px rgba(0,0,0,0.7)",
+    "accentGlow": "0 0 20px rgba(123, 47, 255, 0.35)",
+    "productImage": "0 12px 48px rgba(0,0,0,0.8)"
+  },
+
+  "components": {
+
+    "productCard": {
+      "description": "The core commerce unit. Dark card surface, product image dominates top 55% of card height. Price is always white and bold. Name is white, secondary info is muted.",
+      "layout": "vertical stack: image → name → price → add button",
+      "background": "colorTokens.background.card",
+      "borderRadius": "borderRadius.card",
+      "padding": "spacing.cardPadding",
+      "imageStyle": "object-fit: cover, no border-radius or subtle radius, image can bleed to card edges on top",
+      "priceStyle": "2xl weight 800, white, with smaller superscript cents",
+      "addButton": "circular or pill, accent purple, white '+' icon, right-aligned or bottom full-width",
+      "variants": ["compact-list", "grid-tile", "featured-large"],
+      "states": {
+        "default": "card background visible",
+        "highlighted": "purple left-border or purple background tint (purpleSubtle)"
+      }
+    },
+
+    "productDetailHeader": {
+      "description": "Full-width hero for a single product. Image takes up top 45–55% of screen. Floating back button top-left. Product name in xl/2xl below image. Star rating inline. Description in sm secondary.",
+      "imageBackground": "deep black, can use radial purple ambient glow behind product (subtle, not garish)",
+      "floatingActions": "top-right: favorite heart icon, rounded dark pill background",
+      "colorSwatches": "small circles, 28–32px diameter, border: 2px white on selected, stacked horizontally with 8px gap",
+      "addToCartBar": "fixed bottom bar, dark background, price left, purple pill button right"
+    },
+
+    "cartItem": {
+      "description": "Horizontal row: thumbnail left, name + price center, quantity stepper right. Highlighted active item uses purpleSubtle background.",
+      "thumbnailSize": "56px × 56px, borderRadius sm",
+      "quantityStepper": "minus icon — count — plus icon, all in rounded dark pill, accent purple +/- buttons",
+      "activeHighlight": "full-row background purpleSubtle, left border 3px accent purple"
+    },
+
+    "bottomSheet_addToCart": {
+      "description": "Fixed bar at screen bottom. Contains total price (left, sm label + xl price) and primary action button (right, full purple pill). Background: background.secondary with top border subtle.",
+      "height": "72px",
+      "padding": "0 16px"
+    },
+
+    "primaryButton": {
+      "description": "The single most important interactive element. Always solid purple, always pill-shaped, always white text. Never use outlined or ghost variants for primary actions.",
+      "background": "colorTokens.accent.purple",
+      "borderRadius": "borderRadius.button",
+      "padding": "14px 28px",
+      "fontSize": "typography.scale.md",
+      "fontWeight": 600,
+      "color": "colorTokens.text.onAccent",
+      "states": {
+        "hover": "background purpleLight",
+        "pressed": "background purpleDark, scale 0.97",
+        "disabled": "opacity 0.4"
+      },
+      "withIcon": "icon + 8px gap + label, icon is white, same size as text"
+    },
+
+    "iconButton": {
+      "description": "Circular or square-rounded dark pill for back, favorite, cart, filter actions. Semi-transparent dark background.",
+      "size": "40px",
+      "background": "rgba(255,255,255,0.08)",
+      "borderRadius": "borderRadius.full or borderRadius.md",
+      "iconColor": "#FFFFFF",
+      "activeVariant": "background accent.purple"
+    },
+
+    "input": {
+      "description": "Ghost input: very dark fill, subtle border, white text, placeholder is muted. No visible label by default — placeholder serves as label. Focus ring is accent purple.",
+      "background": "rgba(255,255,255,0.05)",
+      "border": "1px solid colorTokens.border.default",
+      "focusBorder": "1px solid colorTokens.accent.purple",
+      "borderRadius": "borderRadius.input",
+      "padding": "14px 16px",
+      "fontSize": "typography.scale.base",
+      "color": "colorTokens.text.primary",
+      "placeholderColor": "colorTokens.text.muted"
+    },
+
+    "searchBar": {
+      "description": "Full-width input with search icon left-inset. Same ghost style as input. Sits in a sticky header zone.",
+      "iconPosition": "left, 16px from edge, muted color",
+      "background": "rgba(255,255,255,0.05)",
+      "borderRadius": "borderRadius.full"
+    },
+
+    "navigationBar": {
+      "description": "Bottom tab bar. Dark background, 4–5 icon tabs. Active tab: icon turns accent purple with small filled dot or underline below. Inactive: muted icon, no label.",
+      "background": "colorTokens.background.secondary",
+      "height": "60px",
+      "iconSize": "22px",
+      "activeColor": "colorTokens.accent.purple",
+      "inactiveColor": "colorTokens.text.muted",
+      "indicator": "small filled dot below active icon OR icon fill changes to purple",
+      "topBorder": "1px solid colorTokens.border.subtle"
+    },
+
+    "topBar": {
+      "description": "Minimal navigation header. Back chevron left, title center (md weight 600), optional action icon right. No background fill — inherits screen background.",
+      "height": "52px",
+      "titleAlign": "center",
+      "iconColor": "#FFFFFF"
+    },
+
+    "badge": {
+      "description": "Small count indicators on cart icons or product cards. Purple fill, white text, 18px diameter minimum.",
+      "background": "colorTokens.accent.purple",
+      "color": "#FFFFFF",
+      "size": "18px",
+      "fontSize": "10px",
+      "fontWeight": 700,
+      "borderRadius": "borderRadius.badge",
+      "position": "top-right corner of parent, -6px offset"
+    },
+
+    "ratingStars": {
+      "description": "Horizontal star row. Filled stars are star yellow (#FFB800), empty are muted. Always show numeric rating right of stars in sm secondary color.",
+      "starSize": "14px",
+      "gap": "3px",
+      "filledColor": "colorTokens.status.star",
+      "emptyColor": "colorTokens.text.muted"
+    },
+
+    "avatarStack": {
+      "description": "Small overlapping user avatars for social proof ('X people bought this'). 28px diameter, 2px white border, -10px negative margin overlap.",
+      "size": "28px",
+      "border": "2px solid colorTokens.background.card",
+      "overflow": "circular clip"
+    },
+
+    "categoryFilter": {
+      "description": "Horizontal scroll row of icon+label pills. Active pill has purple fill. Inactive pills have subtle dark fill. Icons are white SVGs.",
+      "pillHeight": "36px",
+      "padding": "0 14px",
+      "gap": "8px",
+      "activeBackground": "colorTokens.accent.purple",
+      "inactiveBackground": "rgba(255,255,255,0.07)",
+      "fontSize": "typography.scale.sm",
+      "borderRadius": "borderRadius.full"
+    },
+
+    "productImageCarousel": {
+      "description": "Full-bleed image with pagination dots below. Dots: 6px inactive, 18px active (elongated pill), all white with opacity.",
+      "dotInactive": "6px circle, opacity 0.3",
+      "dotActive": "18px wide × 6px tall pill, opacity 1, white",
+      "dotGap": "6px",
+      "swipeEnabled": true
+    },
+
+    "sectionHeader": {
+      "description": "'Popular product', 'Catalog', etc. — left-aligned, lg weight 600, white. Optional 'See all' right-aligned in sm accent purple.",
+      "fontSize": "typography.scale.lg",
+      "fontWeight": 600,
+      "color": "colorTokens.text.primary",
+      "seeAllColor": "colorTokens.accent.purple"
+    },
+
+    "registrationForm": {
+      "description": "Hero image top (full-bleed, circular blob mask or standard top), title below in xl, stacked ghost inputs, purple CTA button full-width at bottom.",
+      "imageStyle": "top of screen, can use organic blob or circular clip shape in accent purple as background behind image",
+      "titleAlign": "center",
+      "inputStack": "gap 12px between inputs",
+      "ctaMarginTop": "24px"
+    },
+
+    "paymentCard": {
+      "description": "Visa/debit card widget. Purple gradient card, card number partially masked, card holder name, expiry. Small bank logo or card icon.",
+      "background": "linear-gradient(135deg, #7B2FFF 0%, #5B1FCC 100%)",
+      "borderRadius": "borderRadius.lg",
+      "padding": "20px",
+      "textColor": "#FFFFFF",
+      "labelColor": "rgba(255,255,255,0.6)",
+      "size": "full-width × ~160px height"
+    },
+
+    "orderSummary": {
+      "description": "Cart total + QR code + Buy button. Clean dark card, itemized list above, total in xl white below, QR code left of Buy button.",
+      "totalLabel": "sm muted, 'Total'",
+      "totalValue": "xl white weight 800",
+      "qrCodeSize": "64px × 64px",
+      "buyButton": "primaryButton, full-width or right-aligned"
+    }
+  },
+
+  "layoutPrinciples": {
+    "grid": "4-column mobile grid, 16px gutters, 16px screen padding",
+    "productGrids": "2-column grid for catalog, 1-column for cart/list views",
+    "cardElevation": "Cards sit on background.primary. Elevated modals/sheets sit on background.secondary. Never use white or light backgrounds.",
+    "imageHierarchy": "Product images are always the visual hero. They should be large, sharp, isolated on dark backgrounds. Avoid lifestyle images except for registration/onboarding.",
+    "density": "Medium-high. Show enough product at once to feel like a real catalog, but don't crowd to the point of noise. 12px minimum gap between cards.",
+    "scrollBehavior": "Horizontal scroll for category filters and featured rows. Vertical scroll for main catalog. No pagination — infinite scroll implied.",
+    "fixedElements": "Bottom nav and bottom CTA bars are always fixed. Top bar is sticky. Everything else scrolls."
+  },
+
+  "designPrinciples": [
+    "Purple is reserved for: primary actions, active states, interactive indicators, and price highlights. Never use it decoratively.",
+    "The background is near-black, not pure black (#000). This prevents harshness while maintaining depth.",
+    "Product images float on dark backgrounds — use drop shadows or radial glows to separate them from the card surface, not borders.",
+    "Text hierarchy is enforced by size + weight + color together. Never rely on color alone to establish hierarchy.",
+    "Interactive elements are always pill-shaped (full border-radius). Containers/cards use moderate radius (12–16px). This creates a clear visual language: 'pills = tap me', 'cards = content'.",
+    "Avoid excessive gradients. The purple gradient is only used in the payment card component. Everything else is flat dark fills.",
+    "Spacing is generous within components but tight between them. Internal padding should feel comfortable; card-to-card gaps keep the catalog dense.",
+    "No decorative illustrations or icons. Every visual element is either a product image or a functional UI control.",
+    "The UI should feel like hardware — precise, machined, purposeful. Not playful, not warm, not soft."
+  ],
+
+  "motionGuidelines": {
+    "philosophy": "Motion confirms state changes and aids navigation. It does not entertain.",
+    "transitions": {
+      "screenEnter": "slide-up 280ms ease-out",
+      "screenExit": "fade-out 200ms ease-in",
+      "modalPresent": "slide-up from bottom 320ms spring(damping: 0.8)",
+      "cardTap": "scale 0.97 80ms ease-in-out"
+    },
+    "buttonPress": "scale(0.96) 80ms, background darken 80ms",
+    "carouselSwipe": "native momentum scroll, no easing override",
+    "avoid": ["bounce effects", "decorative particle animations", "loading skeletons with shimmer (use simple dark pulse instead)"]
+  },
+
+  "iconography": {
+    "style": "Outlined, 2px stroke, rounded caps and joins. Never filled except when active.",
+    "activeStyle": "Filled or accent-purple stroke for active/selected state",
+    "size": "22px standard, 18px compact, 28px large",
+    "color": "White default, muted for inactive, accent purple for active"
+  },
+
+  "doAndDont": {
+    "do": [
+      "Use high-res product images with transparent or dark backgrounds",
+      "Keep the price as the most visually dominant text element on product cards",
+      "Use the purple CTA button for exactly one action per screen",
+      "Maintain the near-black background across all screens without exception",
+      "Use pill shapes for all interactive buttons"
+    ],
+    "dont": [
+      "Don't use white or light mode surfaces anywhere in this system",
+      "Don't use purple for text — only for backgrounds of interactive elements",
+      "Don't add decorative gradients or noise textures to card backgrounds",
+      "Don't use more than 2 font weights per screen — hierarchy comes from size, not weight variation",
+      "Don't use outlined buttons for primary actions — always solid purple pill"
+    ]
+  }
+}
