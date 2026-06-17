@@ -168,7 +168,7 @@ const ProductCard = ({ product }: { product: typeof PRODUCTS[0] }) => {
             </h3>
           </div>
           
-          <div className="mt-auto flex items-end justify-between">
+          <div className="mt-auto flex flex-col gap-4">
             <div className="flex flex-col">
               <span className="text-xs text-white/50 uppercase tracking-widest">Prix</span>
               <div className="flex items-baseline gap-1">
@@ -182,10 +182,10 @@ const ProductCard = ({ product }: { product: typeof PRODUCTS[0] }) => {
             </div>
             <Button 
               onClick={handlePurchase}
-              size="icon" 
-              className="rounded-full size-10 bg-primary hover:bg-primary/90 text-white shadow-accent-glow"
+              className="w-full rounded-xl bg-primary hover:bg-primary/90 text-white shadow-accent-glow flex items-center justify-center gap-2 h-11"
             >
-              <CreditCard size={20} />
+              <CreditCard size={18} />
+              <span className="text-xs font-bold uppercase tracking-wider">Commander</span>
             </Button>
           </div>
         </CardContent>
