@@ -38,7 +38,7 @@ const PRODUCTS = [
     id: "ps5",
     name: "Console PlayStation 5",
     category: "consoles",
-    price: 499.99,
+    price: 375000,
     image: "/Image/PS5.png",
     isFeatured: true,
     description: "Gaming nouvelle génération avec un SSD ultra-rapide et un son 3D immersif."
@@ -47,7 +47,7 @@ const PRODUCTS = [
     id: "xbox-series-x",
     name: "Xbox Series X",
     category: "consoles",
-    price: 499.99,
+    price: 375000,
     image: "/Image/Xbox Series X.png",
     isFeatured: true,
     description: "La Xbox la plus puissante jamais conçue, bâtie pour la vitesse et la performance."
@@ -56,7 +56,7 @@ const PRODUCTS = [
     id: "dualset-ps5",
     name: "Manette sans fil DualSense",
     category: "controllers",
-    price: 69.99,
+    price: 50000,
     image: "/Image/Manette PS5.png",
     isFeatured: false,
     description: "Découvrez une expérience de jeu plus profonde avec le retour haptique."
@@ -65,7 +65,7 @@ const PRODUCTS = [
     id: "xbox-elite",
     name: "Xbox Elite Series 2",
     category: "controllers",
-    price: 179.99,
+    price: 135000,
     image: "/Image/Manette Xbox series X.png",
     isFeatured: false,
     description: "Jouez comme un pro avec la manette la plus avancée au monde."
@@ -74,7 +74,7 @@ const PRODUCTS = [
     id: "ps-vr",
     name: "Casque PlayStation VR",
     category: "accessories",
-    price: 299.99,
+    price: 225000,
     image: "/Image/Casque VR PlayStation.png",
     isFeatured: false,
     description: "Immergez-vous dans de nouveaux mondes extraordinaires avec le PS VR."
@@ -83,7 +83,7 @@ const PRODUCTS = [
     id: "xbox-series-s",
     name: "Xbox Series S",
     category: "consoles",
-    price: 299.99,
+    price: 225000,
     image: "/Image/Xbox Series S.png",
     isFeatured: false,
     description: "Performances next-gen dans la plus petite Xbox jamais conçue."
@@ -92,7 +92,7 @@ const PRODUCTS = [
     id: "volant-ps",
     name: "Volant de course PlayStation",
     category: "accessories",
-    price: 349.99,
+    price: 265000,
     image: "/Image/Volant Playstation.png",
     isFeatured: false,
     description: "Volant haute performance pour une simulation de conduite ultime."
@@ -101,7 +101,7 @@ const PRODUCTS = [
     id: "ps4-pro",
     name: "Console PS4 PRO",
     category: "consoles",
-    price: 399.99,
+    price: 285000,
     image: "/Image/PS4 PRO.png",
     isFeatured: false,
     description: "Graphismes spectaculaires et performances améliorées."
@@ -110,7 +110,7 @@ const PRODUCTS = [
     id: "xbox-one-x",
     name: "Xbox One Series X",
     category: "consoles",
-    price: 349.99,
+    price: 245000,
     image: "/Image/Xbox one series x.png",
     isFeatured: false,
     description: "Découvrez la véritable puissance du jeu en 4K."
@@ -119,7 +119,7 @@ const PRODUCTS = [
     id: "manette-ps4",
     name: "Manette sans fil PS4",
     category: "controllers",
-    price: 59.99,
+    price: 35000,
     image: "/Image/Manette PS4.png",
     isFeatured: false,
     description: "La manette classique pour votre configuration PS4."
@@ -128,7 +128,7 @@ const PRODUCTS = [
     id: "manette-xbox-one",
     name: "Manette Xbox One",
     category: "controllers",
-    price: 54.99,
+    price: 30000,
     image: "/Image/Manette Xbox One.png",
     isFeatured: false,
     description: "Contrôle de précision pour votre expérience Xbox One."
@@ -139,7 +139,7 @@ const PRODUCTS = [
 
 const ProductCard = ({ product }: { product: typeof PRODUCTS[0] }) => {
   const handlePurchase = () => {
-    const message = `Bonjour GameStore, je souhaite commander : ${product.name} au prix de ${product.price} USD.`;
+    const message = `Bonjour GameStore, je souhaite commander : ${product.name} au prix de ${product.price.toLocaleString('fr-FR')} FCFA.`;
     window.open(`${WHATSAPP_LINK}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
@@ -171,12 +171,12 @@ const ProductCard = ({ product }: { product: typeof PRODUCTS[0] }) => {
           <div className="mt-auto flex items-end justify-between">
             <div className="flex flex-col">
               <span className="text-xs text-white/50 uppercase tracking-widest">Prix</span>
-              <div className="flex items-start">
+              <div className="flex items-baseline gap-1">
                 <span className="text-2xl font-extrabold text-white leading-none">
-                  ${Math.floor(product.price)}
+                  {product.price.toLocaleString('fr-FR')}
                 </span>
-                <span className="text-[10px] font-normal text-white/70 ml-0.5 mt-1">
-                  .{(product.price % 1).toFixed(2).split('.')[1]}
+                <span className="text-[10px] font-bold text-primary">
+                  FCFA
                 </span>
               </div>
             </div>
